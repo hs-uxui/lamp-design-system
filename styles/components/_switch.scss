@@ -1,0 +1,103 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+.switch {
+  position: relative;
+  display: inline-block;
+
+  &-label {
+    cursor: pointer;
+
+    position: relative;
+
+    display: block;
+
+    width: 3.8rem;
+    height: 2rem;
+    border-radius: 9999rem;
+
+    background-color: $bg-interactive-secondary-hovered;
+
+    transition: background-color 0.2s linear;
+
+    &:hover {
+      background-color: $bg-interactive-secondary-pressed;
+    }
+
+    &:active {
+      background-color: $color-brand-secondary-400;
+    }
+  }
+
+  &-handle {
+    @include flexbox;
+
+    position: absolute;
+    top: 0.2rem;
+    left: 0.2rem;
+
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 9999rem;
+
+    background-color: $bg-primary;
+
+    transition: transform 0.2s;
+
+    .ic-remove {
+      font-size: 1.6rem;
+      color: $icon-disabled;
+    }
+
+    .ic-check {
+      display: none;
+      font-size: 1.6rem;
+      color: $icon-interactive-primary;
+    }
+  }
+}
+
+// Focus 상태
+.switch-input:checked:focus-visible + .switch-label,
+.switch-input:focus-visible + .switch-label {
+  box-shadow: 0 0 0 0.3rem $border-focus;
+}
+
+// Checked 상태
+.switch-input:checked + .switch-label {
+  background-color: $bg-interactive-primary;
+
+  &:hover {
+    background-color: $bg-interactive-primary-hovered;
+  }
+
+  &:active {
+    background-color: $bg-interactive-primary-pressed;
+  }
+
+  .switch-handle {
+    transform: translateX(1.8rem);
+  }
+
+  .ic-remove {
+    display: none;
+  }
+
+  .ic-check {
+    display: block;
+  }
+}
+
+// Disabled 상태
+.switch-input:disabled + .switch-label {
+  cursor: not-allowed;
+  background-color: $bg-disabled;
+}
+
+.switch-input:disabled + .switch-label .switch-handle {
+  background-color: $bg-interactive-secondary-pressed;
+}
+
+.switch-input:disabled + .switch-label .switch-handle .ic-remove {
+  color: $icon-disabled;
+}
