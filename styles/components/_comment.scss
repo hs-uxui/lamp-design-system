@@ -1,0 +1,156 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+/* Badge */
+.comment-badge {
+  @include inline-flexbox;
+
+  height: 2rem;
+  padding: 0 0.8rem;
+  border-radius: 9999rem;
+
+  .comment-badge-text {
+    @include text-style(12);
+  }
+
+  &.new {
+    background-color: $bg-success-subtle;
+
+    .comment-badge-text {
+      color: $text-success;
+    }
+  }
+
+  &.edit {
+    background-color: $bg-info-subtle;
+
+    .comment-badge-text {
+      color: $text-info;
+    }
+  }
+}
+
+/* Button */
+.btn-comment {
+  @include inline-flexbox;
+
+  @include text-style(13, $text-disabled);
+
+  height: 2rem;
+  padding: 0 0.2rem;
+
+  &:hover {
+    color: $text-secondary;
+  }
+
+  &.is-active {
+    color: $text-interactive-selected;
+
+    &:hover {
+      color: $text-interactive-primary;
+    }
+  }
+}
+
+/* Mention Tag */
+.mention-tag {
+  @include inline-flexbox;
+
+  height: 2rem;
+  padding: 0 0.4rem;
+  border-radius: 0.4rem;
+  background-color: $bg-interactive-selected;
+
+  &-name {
+    @include text-style(12, $text-interactive-selected);
+  }
+}
+
+.comment-item {
+  @include flexbox(start, start, 0.8rem);
+
+  padding: 1.2rem 1.2rem 1.2rem 0;
+
+  &-info-header {
+    @include flexbox(start, center, 0.8rem);
+
+    margin-bottom: 0.4rem;
+  }
+
+  &-info-name {
+    @include text-style(14, $text-primary, 600);
+  }
+
+  &-info-date {
+    @include text-style(13, $text-disabled);
+  }
+
+  &-info-content {
+    @include flexbox(start, center, 0.4rem);
+
+    margin-bottom: 0.4rem;
+
+    p {
+      @include text-style(14);
+    }
+  }
+
+  &-info-actions {
+    @include flexbox(start, center, 0.4rem);
+  }
+}
+
+.comment-container {
+  .comment-list-wrapper {
+    margin-top: 1.6rem;
+  }
+
+  .comment-list-header {
+    padding: 0.8rem 0 1.2rem;
+
+    // border-bottom: 0.1rem solid $border-divide-bold;
+  }
+
+  .comment-list-header-title {
+    @include text-style(14, $weight: 500);
+
+    margin-right: 0.4rem;
+  }
+
+  .comment-list-header-count {
+    @include text-style(14, $text-interactive-primary, 500);
+  }
+
+  .comment-list {
+    .comment-depth-1 {
+      position: relative;
+      border-top: 0.1rem solid $border-divide-bold;
+
+      &:has(.comment-reply-list) {
+        &::before {
+          content: '';
+
+          position: absolute;
+          top: 5.6rem;
+          left: 1.6rem;
+
+          display: block;
+
+          width: 0.1rem;
+          height: calc(100% - 6.8rem);
+
+          background-color: $bg-interactive-secondary-hovered;
+        }
+      }
+    }
+  }
+
+  .comment-depth-2 {
+    padding-left: 4rem;
+  }
+
+  .comment-item-reply {
+    padding-bottom: 1.2rem;
+    padding-left: 4rem;
+  }
+}
