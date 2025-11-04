@@ -1,0 +1,72 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use '../variables' as *;
+@use '../mixins' as *;
+
+%icon-btn-base {
+  @include inline-flexbox;
+  @include focus-visible;
+
+  transition: $base-transition;
+}
+
+.icon-btn {
+  @extend %icon-btn-base;
+
+  @include btn-size(md);
+
+  @each $size, $value in $btn-sizes {
+    &.#{$size} {
+      @include btn-size($size);
+
+      border-radius: map.get($btn-radius, $size);
+    }
+  }
+
+  // ------ Variants ------
+  &.primary {
+    &.filled {
+      @include primary-btn-style(filled);
+    }
+
+    &.outlined {
+      @include primary-btn-style(outlined);
+    }
+
+    &.ghost {
+      @include primary-btn-style(text);
+    }
+  }
+
+  &.secondary {
+    .material-symbols-rounded {
+      color: $icon-interactive-secondary;
+    }
+
+    &.filled {
+      @include secondary-btn-style(filled);
+    }
+
+    &.outlined {
+      @include secondary-btn-style(outlined);
+    }
+
+    &.ghost {
+      @include secondary-btn-style(text);
+    }
+  }
+
+  &.destructive {
+    &.filled {
+      @include destructive-btn-style(filled);
+    }
+
+    &.outlined {
+      @include destructive-btn-style(outlined);
+    }
+
+    &.ghost {
+      @include destructive-btn-style(text);
+    }
+  }
+}
