@@ -1,0 +1,26 @@
+@use "../mixins/" as *;
+
+.lamp7-workspace {
+  overflow: hidden;
+}
+
+.layout {
+  @include flexbox(start, start);
+}
+
+.main {
+  @include column-flexbox(start, start);
+
+  flex-grow: 1;
+  width: calc(100% - 26rem);
+  height: 100vh;
+}
+
+.content {
+  overflow: auto;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  width: 100%;
+}
