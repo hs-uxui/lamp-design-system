@@ -1,0 +1,257 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+.status-chip {
+  @include inline-flexbox($gap: 0.4rem);
+  @include text-style(13);
+
+  height: 2.6rem;
+  padding: 0 1.2rem 0 0.8rem;
+  border-radius: 999rem;
+  white-space: nowrap;
+
+  .material-symbols-rounded {
+    font-size: 1.6rem;
+  }
+
+  &.neutral {
+    &.filled {
+      background-color: $bg-inverse-bolder;
+
+      .material-symbols-rounded {
+        color: $icon-interactive-inverse;
+      }
+
+      .status-chip-label {
+        color: $text-interactive-inverse;
+      }
+    }
+
+    &.transparent {
+      background-color: $bg-tertiary;
+
+      .material-symbols-rounded {
+        color: $icon-secondary;
+      }
+
+      .status-chip-label {
+        color: $text-secondary;
+      }
+    }
+
+    &.outline {
+      border: 0.1rem solid $border-tertiary;
+      background-color: 0.1rem solid $bg-tertiary;
+
+      .material-symbols-rounded {
+        color: $icon-secondary;
+      }
+
+      .status-chip-label {
+        color: $text-secondary;
+      }
+    }
+  }
+
+  &.information {
+    &.filled {
+      background-color: $bg-info-bold;
+
+      .material-symbols-rounded {
+        color: $icon-interactive-inverse;
+      }
+
+      span {
+        color: $text-interactive-inverse;
+      }
+    }
+
+    &.transparent {
+      background-color: $bg-info-subtle;
+
+      .material-symbols-rounded {
+        color: $icon-info;
+      }
+
+      span {
+        color: $text-secondary;
+      }
+    }
+
+    &.outline {
+      border: 0.1rem solid $border-info;
+      background-color: $bg-info-subtle;
+
+      .material-symbols-rounded {
+        color: $icon-info;
+      }
+
+      span {
+        color: $text-secondary;
+      }
+    }
+  }
+
+  &.success {
+    &.filled {
+      background-color: $bg-success-bold;
+
+      .material-symbols-rounded {
+        color: $icon-interactive-inverse;
+      }
+
+      span {
+        color: $text-interactive-inverse;
+      }
+    }
+
+    &.transparent {
+      background-color: $bg-success-subtle;
+
+      .material-symbols-rounded {
+        color: $icon-success;
+      }
+
+      span {
+        color: $text-secondary;
+      }
+    }
+
+    &.outline {
+      border: 0.1rem solid $border-success;
+      background-color: $bg-success-subtle;
+
+      .material-symbols-rounded {
+        color: $icon-success;
+      }
+
+      span {
+        color: $text-secondary;
+      }
+    }
+  }
+
+  &.warning {
+    &.filled {
+      background-color: $bg-warning-bold;
+
+      .material-symbols-rounded {
+        color: $icon-interactive-inverse;
+      }
+
+      span {
+        color: $text-interactive-inverse;
+      }
+    }
+
+    &.transparent {
+      background-color: $bg-warning-subtle;
+
+      .material-symbols-rounded {
+        color: $icon-warning;
+      }
+
+      span {
+        color: $text-secondary;
+      }
+    }
+
+    &.outline {
+      border: 0.1rem solid $border-warning;
+      background-color: $bg-warning-subtle;
+
+      .material-symbols-rounded {
+        color: $icon-warning;
+      }
+
+      span {
+        color: $text-secondary;
+      }
+    }
+  }
+
+  &.error {
+    &.filled {
+      background-color: $bg-danger-bold;
+
+      .material-symbols-rounded {
+        color: $icon-interactive-inverse;
+      }
+
+      span {
+        color: $text-interactive-inverse;
+      }
+    }
+
+    &.transparent {
+      background-color: $bg-danger-subtle;
+
+      .material-symbols-rounded {
+        color: $icon-danger;
+      }
+
+      span {
+        color: $text-secondary;
+      }
+    }
+
+    &.outline {
+      border: 0.1rem solid $border-danger;
+      background-color: $bg-danger-subtle;
+
+      .material-symbols-rounded {
+        color: $icon-warning;
+      }
+
+      span {
+        color: $text-secondary;
+      }
+    }
+  }
+}
+
+.user-chip {
+  @include inline-flexbox($gap: 0.4rem);
+
+  height: 3.6rem;
+  padding: 0 0.8rem 0 1.2rem;
+  border: 0.1rem solid $border-interactive-primary;
+  border-radius: 0.6rem;
+
+  background-color: $bg-interactive-selected;
+
+  &:hover {
+    border-color: $border-interactive-primary-hovered;
+  }
+
+  &-name {
+    @include text-style(14, $text-interactive-selected);
+  }
+
+  .chip-remove {
+    @include inline-flexbox;
+
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.4rem;
+    transition: $base-transition;
+
+    .material-symbols-rounded {
+      font-size: 1.6rem;
+      color: $icon-disabled;
+      transition: $base-transition;
+    }
+
+    &:hover {
+      background-color: $bg-interactive-selected-hover;
+
+      .material-symbols-rounded {
+        color: $icon-secondary;
+      }
+    }
+
+    &:active {
+      background-color: $bg-interactive-selected-pressed;
+    }
+  }
+}
