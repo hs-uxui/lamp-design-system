@@ -1,0 +1,31 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+.form-label {
+  @include text-style(14);
+
+  position: relative;
+  white-space: nowrap;
+}
+
+.search-area .form-label {
+  min-width: 4.8rem;
+}
+
+.inline-label {
+  position: relative;
+
+  width: fit-content;
+  min-width: 26rem;
+  min-height: 4.8rem;
+  padding: 1.4rem 1.2rem;
+  border-bottom: 0.1rem solid $border-divide-bold;
+
+  white-space: nowrap;
+
+  background-color: $table-head;
+
+  &-text {
+    @include text-style(14, 500);
+  }
+}
