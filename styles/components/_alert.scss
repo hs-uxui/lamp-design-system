@@ -1,0 +1,293 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+%base-toast-color {
+  .toast-title {
+    @include text-style(16, $text-primary, 500);
+
+    margin: 0 0 0.4rem;
+  }
+
+  .toast-description {
+    @include text-style(14, $text-secondary);
+
+    word-break: keep-all;
+  }
+}
+
+%base-alert-color {
+  .alert-title {
+    color: $text-primary;
+  }
+
+  .alert-description {
+    color: $text-secondary;
+  }
+
+  .alert-close {
+    .material-symbols-rounded {
+      color: $icon-tertiary;
+    }
+
+    &:hover {
+      .material-symbols-rounded {
+        color: $icon-primary;
+      }
+    }
+  }
+}
+
+%base-alert-info-color {
+  @extend %base-alert-color;
+
+  .alert-icon {
+    .material-symbols-rounded {
+      color: $icon-info;
+    }
+  }
+
+  .alert-close {
+    &:hover {
+      background-color: $bg-info-subtle-pressed;
+    }
+  }
+}
+
+%base-alert-success-color {
+  @extend %base-alert-color;
+
+  .alert-icon {
+    .material-symbols-rounded {
+      color: $icon-success;
+    }
+  }
+
+  .alert-close {
+    &:hover {
+      background-color: $bg-success-subtle-pressed;
+    }
+  }
+}
+
+%base-alert-warning-color {
+  @extend %base-alert-color;
+
+  .alert-icon {
+    .material-symbols-rounded {
+      color: $icon-warning;
+    }
+  }
+
+  .alert-close {
+    &:hover {
+      background-color: $bg-warning-subtle-pressed;
+    }
+  }
+}
+
+%base-alert-error-color {
+  @extend %base-alert-color;
+
+  .alert-icon {
+    .material-symbols-rounded {
+      color: $icon-danger;
+    }
+  }
+
+  .alert-close {
+    &:hover {
+      background-color: $bg-danger-subtle-pressed;
+    }
+  }
+}
+
+.alert,
+.toast {
+  position: relative;
+
+  width: fit-content;
+  min-width: 40rem;
+  max-width: 60rem;
+  padding: 1.2rem 4rem 1.2rem 1.2rem;
+  border-radius: 0.8rem;
+
+  color: $text-interactive-visited;
+
+  &-content {
+    @include flexbox(start, start, 0.8rem);
+  }
+
+  &-icon {
+    @include inline-flexbox;
+
+    width: 2.4rem;
+    height: 2.4rem;
+
+    .material-symbols-rounded {
+      font-size: 2.4rem;
+      color: $icon-interactive-inverse;
+    }
+  }
+
+  &-body {
+    .alert-title {
+      @include text-style(16, $text-interactive-inverse, 500);
+
+      margin: 0 0 0.4rem;
+    }
+
+    .alert-description {
+      @include text-style(14, $text-interactive-inverse);
+
+      word-break: keep-all;
+    }
+  }
+
+  &-close {
+    @include inline-flexbox;
+
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+
+    width: 2.4rem;
+    height: 2.4rem;
+    border: none;
+    border-radius: 0.4rem;
+
+    &:hover {
+      background-color: rgba($color: #000, $alpha: 10%);
+    }
+
+    .material-symbols-rounded {
+      font-size: 1.6rem;
+      color: $icon-interactive-inverse;
+    }
+  }
+
+  &.information {
+    &.filled {
+      background-color: $bg-info-bold;
+    }
+
+    &.outlined {
+      @extend %base-alert-info-color;
+
+      border: 0.1rem solid $border-info;
+      background-color: $bg-info-subtle;
+    }
+
+    &.transparent {
+      @extend %base-alert-info-color;
+
+      background-color: $bg-info-subtle;
+    }
+  }
+
+  &.success {
+    &.filled {
+      background-color: $bg-success-bold;
+    }
+
+    &.outlined {
+      @extend %base-alert-success-color;
+
+      border: 0.1rem solid $border-success;
+      background-color: $bg-success-subtle;
+    }
+
+    &.transparent {
+      @extend %base-alert-success-color;
+
+      background-color: $bg-success-subtle;
+    }
+  }
+
+  &.warning {
+    &.filled {
+      background-color: $bg-warning-bold;
+    }
+
+    &.outlined {
+      @extend %base-alert-warning-color;
+
+      border: 0.1rem solid $border-warning;
+      background-color: $bg-warning-subtle;
+    }
+
+    &.transparent {
+      @extend %base-alert-warning-color;
+
+      background-color: $bg-warning-subtle;
+    }
+  }
+
+  &.error {
+    &.filled {
+      background-color: $bg-danger-bold;
+    }
+
+    &.outlined {
+      @extend %base-alert-error-color;
+
+      border: 0.1rem solid $border-danger;
+      background-color: $bg-danger-subtle;
+    }
+
+    &.transparent {
+      @extend %base-alert-error-color;
+
+      background-color: $bg-danger-subtle;
+    }
+  }
+}
+
+.toast {
+  &-body {
+    @extend %base-toast-color;
+  }
+
+  &.information {
+    border: 0.1rem solid $border-info;
+    background-color: $bg-info-subtle;
+
+    .toast-icon {
+      .material-symbols-rounded {
+        color: $icon-info;
+      }
+    }
+  }
+
+  &.success {
+    border: 0.1rem solid $border-success;
+    background-color: $bg-success-subtle;
+
+    .toast-icon {
+      .material-symbols-rounded {
+        color: $icon-success;
+      }
+    }
+  }
+
+  &.warning {
+    border: 0.1rem solid $border-warning;
+    background-color: $bg-warning-subtle;
+
+    .toast-icon {
+      .material-symbols-rounded {
+        color: $icon-warning;
+      }
+    }
+  }
+
+  &.error {
+    border: 0.1rem solid $border-danger;
+    background-color: $bg-danger-subtle;
+
+    .toast-icon {
+      .material-symbols-rounded {
+        color: $icon-danger;
+      }
+    }
+  }
+}
