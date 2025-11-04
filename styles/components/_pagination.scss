@@ -1,0 +1,79 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+.pagination-area {
+  @include flexbox(center, center);
+
+  padding: 1.2rem 0;
+}
+
+.pagination {
+  @include flexbox($gap: 0.4rem);
+
+  .btn-control {
+    @include inline-flexbox;
+    @include focus-visible;
+
+    width: 3.2rem;
+    height: 3.2rem;
+    border: 0.1rem solid $border-interactive-secondary;
+    border-radius: 0.6rem;
+
+    transition: $base-transition;
+
+    &:hover:not(:disabled) {
+      border-color: $border-interactive-secondary-hovered;
+      background-color: $bg-interactive-secondary;
+    }
+
+    &:active:not(:disabled) {
+      border-color: $border-interactive-secondary-pressed;
+      background-color: $bg-interactive-secondary-hovered;
+    }
+
+    .material-symbols-rounded {
+      font-size: 2rem;
+      color: $icon-primary;
+    }
+
+    &:disabled {
+      border-color: $border-disabled;
+
+      .material-symbols-rounded {
+        color: $icon-disabled;
+      }
+    }
+  }
+}
+
+.page-list {
+  @include flexbox($gap: 0.4rem);
+}
+
+.btn-page {
+  @include text-style(14, $text-tertiary);
+
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 0.6rem;
+  transition: $base-transition;
+
+  &:hover:not(.is-active) {
+    background-color: $bg-interactive-secondary;
+  }
+
+  &:active:not(.is-active) {
+    background-color: $bg-interactive-secondary-hovered;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 0.3rem $border-focus;
+  }
+}
+
+.page-item.is-active {
+  .btn-page {
+    color: $text-interactive-primary;
+    background-color: $bg-interactive-selected;
+  }
+}
