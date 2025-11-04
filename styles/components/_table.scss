@@ -1,0 +1,181 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+.table-container {
+  overflow: hidden;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  min-height: 0;
+}
+
+.table-wrapper {
+  @include table-scrollbar;
+
+  overflow: auto;
+  min-height: 0;
+  border: 0.1rem solid $border-divide-bold;
+  border-radius: 0.8rem;
+}
+
+table {
+  table-layout: fixed;
+  border-spacing: 0;
+  border-collapse: separate;
+  width: 100%;
+
+  th {
+    @include text-style(14, $weight: 500);
+
+    position: sticky;
+    z-index: $table-header-level;
+    top: 0;
+
+    padding: 0.8rem 1.2rem;
+    border-right: 0.1rem solid $border-divide-bold;
+    border-bottom: 0.1rem solid $border-divide-bold;
+
+    text-align: left;
+    vertical-align: middle;
+
+    background-color: $table-head;
+
+    &:hover {
+      background-color: $bg-interactive-selected;
+    }
+
+    &.align-center {
+      text-align: center;
+    }
+
+    .sort-btn {
+      width: 1.6rem;
+      height: 1.6rem;
+      margin-left: 0.4rem;
+      vertical-align: text-top;
+
+      i {
+        font-size: 1.6rem;
+        color: $icon-interactive-secondary;
+      }
+    }
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        @include text-style(13);
+
+        cursor: pointer;
+
+        padding: 0.4rem 1.2rem;
+        border-right: 0.1rem solid $border-divide;
+        border-bottom: 0.1rem solid $border-divide;
+
+        vertical-align: middle;
+
+        background-color: $bg-primary;
+
+        &:last-child {
+          border-right: none;
+        }
+
+        &.align-center {
+          text-align: center;
+        }
+      }
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      &:hover td {
+        background-color: $bg-secondary;
+      }
+
+      &:last-child td {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.table-summary {
+  @include flexbox(start, center);
+
+  position: relative;
+  gap: 2rem;
+  margin-top: 0.8rem;
+
+  .summary-total {
+    position: relative;
+
+    &::after {
+      @include pos-center-y;
+
+      content: '';
+
+      right: -1rem;
+
+      width: 0.1rem;
+      height: 1.2rem;
+
+      background-color: $border-divide-bolder;
+    }
+  }
+
+  .summary-total,
+  .summary-range {
+    @include text-style(14, $text-tertiary);
+  }
+
+  .total-count,
+  .visible-range {
+    @include text-style(14, $text-primary, 500);
+  }
+}
+
+.skeleton-table {
+  min-width: 120rem;
+
+  th {
+    &.col-index {
+      width: 5%;
+    }
+
+    &.col-date-requested {
+      width: 10%;
+    }
+
+    &.col-title-meeting {
+      width: 34%;
+    }
+
+    &.col-date-meeting,
+    &.col-time-meeting,
+    &.col-requester {
+      width: 10%;
+    }
+
+    &.col-attachment {
+      width: 8%;
+    }
+
+    &.col-status {
+      width: 7%;
+    }
+
+    &.col-link-minutes {
+      width: 6%;
+    }
+  }
+
+  td {
+    height: 3.2rem;
+  }
+}
