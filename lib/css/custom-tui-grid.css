@@ -1,0 +1,95 @@
+/* 
+divide-bold: #E5E7EB 
+table-th: #F2F3F7
+table-cell-divide: #F3F4F6
+*/
+
+.tui-grid-wrapper {
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.tui-grid-content-area .tui-grid-cell {
+  border-color: #f3f4f6;
+  color: #374151;
+  border-width: 1px;
+  background-color: #fff;
+
+  font-size: 14px;
+  line-height: 20px;
+  padding: 4px 12px;
+}
+
+.tui-grid-content-area .tui-grid-header-area {
+  border-color: #e5e7eb;
+  background-color: #fff;
+}
+
+.tui-grid-content-area .tui-grid-cell-header {
+  margin: 0;
+  border-color: #e5e7eb;
+  border-top-width: 0;
+
+  font-size: 14px;
+  line-height: 20px;
+  color: #111827;
+  letter-spacing: -0.2px;
+
+  background-color: #f2f3f7;
+}
+
+.tui-grid-content-area .tui-grid-border-line-top {
+  border-color: #f2f3f7;
+}
+
+/* td hover */
+.tui-grid-body-area .tui-grid-table tr:hover td {
+  background-color: #f9fafc;
+}
+
+/* th active */
+.tui-grid-cell.tui-grid-cell-header.tui-grid-cell-selected {
+  background-color: #e1e5ff;
+}
+
+/* th active 열 전체  */
+.tui-grid-body-area .tui-grid-layer-selection {
+  background-color: #cbd3ff;
+}
+
+/* td active 외곽선 */
+.tui-grid-layer-focus-border {
+  background-color: #6a80fe !important;
+}
+
+.tui-grid-cell-has-input .tui-grid-cell-content {
+  padding: 0;
+}
+
+.tui-grid-content-area .tui-grid-border-line-left,
+.tui-grid-content-area .tui-grid-border-line-right,
+.tui-grid-no-scroll-x .tui-grid-border-line-bottom {
+  display: none;
+  border: none;
+}
+
+.tui-grid-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tui-grid-btn-sorting {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin-bottom: 3px;
+  background: url('/assets/svg/btn-sorting.svg') no-repeat;
+}
+
+.tui-grid-btn-sorting-down {
+  background: url('/assets/svg/btn-sorting-down.svg') no-repeat;
+}
+
+.tui-grid-btn-sorting-up {
+  background: url('/assets/svg/btn-sorting-up.svg') no-repeat;
+}
