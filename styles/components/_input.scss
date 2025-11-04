@@ -1,0 +1,184 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+%input-base {
+  @include focus-visible;
+
+  position: relative;
+
+  min-width: 13rem;
+  border: 0.1rem solid $border-tertiary;
+
+  background-color: $bg-primary;
+  outline: none;
+
+  transition: $base-transition;
+
+  &::placeholder {
+    color: $text-disabled;
+  }
+
+  &:hover:not(:disabled, .is-error) {
+    border-color: $border-interactive-primary-hovered;
+  }
+
+  &:focus:not(:disabled, .is-error) {
+    border-color: $border-interactive-primary-hovered;
+  }
+
+  &:disabled {
+    border-color: $border-disabled;
+    color: $text-disabled;
+    background-color: $bg-disabled;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    box-shadow: 0 0 0 3rem $bg-primary inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+
+    -webkit-text-fill-color: inherit !important;
+  }
+
+  &.is-error {
+    @include focus-visible($border-interactive-danger);
+
+    border-color: $border-danger;
+
+    &:hover:not(:disabled) {
+      border-color: $border-interactive-danger-hovered;
+    }
+  }
+}
+
+.input {
+  @extend %input-base;
+
+  width: 100%;
+
+  &.lg {
+    @include text-style(16);
+
+    height: 4rem;
+    padding: 0 1.6rem;
+    border-radius: 0.8rem;
+  }
+
+  &.md {
+    @include text-style(14);
+
+    height: 3.6rem;
+    padding: 0 1.2rem;
+    border-radius: 0.8rem;
+  }
+
+  &.sm {
+    @include text-style(13);
+
+    height: 2.8rem;
+    padding: 0 0.8rem;
+    border-radius: 0.6rem;
+  }
+}
+
+.form-helper-text {
+  @include text-style(13, $text-danger);
+
+  position: absolute;
+  bottom: -2.2rem;
+  display: none;
+  white-space: nowrap;
+}
+
+%textarea-base {
+  @include text-style(14);
+
+  resize: none;
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  background-color: $bg-primary;
+}
+
+.textarea-only {
+  @extend %textarea-base;
+
+  @include focus-visible;
+  @include scrollbar-base;
+
+  height: 12rem;
+  border: 0.1rem solid $border-tertiary;
+  border-radius: 0.8rem;
+
+  background-color: $bg-primary;
+
+  transition: $base-transition;
+
+  &::placeholder {
+    color: $text-disabled;
+  }
+
+  &:hover:not(:disabled, .is-error) {
+    border-color: $border-interactive-primary-hovered;
+  }
+
+  &:disabled {
+    border-color: $border-disabled;
+    color: $text-disabled;
+    background-color: $bg-disabled;
+  }
+
+  &.is-error {
+    @include focus-visible($border-interactive-danger);
+
+    border-color: $border-danger;
+
+    &:hover:not(:disabled) {
+      border-color: $border-interactive-danger-hovered;
+    }
+  }
+}
+
+.textarea-group {
+  overflow: hidden;
+  border: 0.1rem solid $border-tertiary;
+  border-radius: 0.8rem;
+
+  &:hover {
+    border-color: $border-interactive-primary;
+  }
+
+  &:focus-within {
+    border-color: $border-interactive-primary;
+  }
+
+  textarea {
+    @extend %textarea-base;
+
+    @include scrollbar-base;
+
+    &::placeholder {
+      color: $text-disabled;
+    }
+  }
+
+  .textarea-group-actions {
+    @include flexbox(end);
+
+    gap: 0.8rem;
+    padding: 0.8rem;
+  }
+
+  &.lg {
+    textarea {
+      height: 9.4rem;
+    }
+  }
+
+  &.md {
+    textarea {
+      height: 6rem;
+    }
+  }
+}
