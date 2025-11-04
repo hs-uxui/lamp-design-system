@@ -1,0 +1,29 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+#datepicker-single,
+#datepicker-range {
+  cursor: pointer;
+}
+
+#datepicker-range {
+  width: 24rem;
+}
+
+.date-range-group,
+.date-input-group {
+  position: relative;
+
+  .ic-calender {
+    @include pos-center-y;
+
+    pointer-events: none;
+    right: 1.2rem;
+    font-size: 2rem;
+    color: $icon-secondary;
+  }
+
+  &.is-active .ic-calender {
+    color: $icon-interactive-primary;
+  }
+}
