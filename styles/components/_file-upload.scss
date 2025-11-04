@@ -1,0 +1,195 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+.file-upload {
+  &-container {
+    width: 100%;
+  }
+
+  &-area {
+    width: 100%;
+  }
+
+  &-dropzone {
+    @include column-flexbox;
+
+    cursor: pointer;
+
+    width: 100%;
+    padding: 2.4rem;
+    border: 0.1rem solid $border-interactive-secondary;
+    border-radius: 0.6rem;
+
+    background-color: $bg-secondary;
+
+    &:hover,
+    &.drag-over {
+      border-color: $border-interactive-primary;
+      background-color: $bg-interactive-selected;
+
+      .file-upload-icon-wrapper {
+        border-color: $border-interactive-primary;
+      }
+
+      .file-upload-icon {
+        background: linear-gradient(180deg, #fff 0%, #eaeeff 100%);
+      }
+
+      .material-symbols-rounded {
+        color: $icon-interactive-selected;
+      }
+    }
+  }
+
+  &-icon-wrapper {
+    width: 4.4rem;
+    height: 4.4rem;
+    margin-bottom: 1.2rem;
+    padding: 0.4rem;
+    border: 0.1rem solid $border-divide-bold;
+    border-radius: 0.8rem;
+
+    background-color: $bg-primary;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 12%);
+  }
+
+  &-icon {
+    @include inline-flexbox;
+
+    width: 100%;
+    height: 100%;
+    border-radius: 0.6rem;
+    background: linear-gradient(180deg, #fff 0%, #efefef 100%);
+
+    .material-symbols-rounded {
+      font-size: 2.4rem;
+      color: $icon-disabled;
+    }
+  }
+
+  &-instruction {
+    @include text-style(14);
+  }
+
+  &-instruction-highlight {
+    color: $text-interactive-selected;
+  }
+}
+
+.file-preview {
+  &-container {
+    @include scrollbar-base(0.4rem, 0.4rem);
+
+    overflow-x: auto;
+    width: 100%;
+    padding: 0.8rem 0;
+  }
+
+  &-list {
+    @include flexbox(start, start, 1.2rem);
+
+    width: 100%;
+  }
+}
+
+.upload-preview {
+  &-item {
+    @include flexbox(start, center, 1.2rem);
+
+    position: relative;
+
+    width: 25.6rem;
+    padding: 0.6rem 1.2rem 0.6rem 0.6rem;
+    border: 0.1rem solid $border-divide-bold;
+    border-radius: 0.6rem;
+  }
+
+  &-remove-btn {
+    @include inline-flexbox;
+
+    position: absolute;
+    top: 0.4rem;
+    right: 0.4rem;
+  }
+
+  &-thumbnail {
+    @include inline-flexbox;
+
+    overflow: hidden;
+    flex-shrink: 0;
+
+    width: 8rem;
+    height: 5.6rem;
+    border: 0.05rem dashed $border-tertiary;
+    border-radius: 0.4rem;
+
+    background-color: $bg-secondary;
+
+    img {
+      @include image-fit;
+    }
+
+    .material-symbols-rounded {
+      font-size: 2.4rem;
+      color: $icon-tertiary;
+    }
+  }
+
+  &-details {
+    width: 100%;
+    min-width: 0;
+  }
+
+  &-name {
+    @include text-style(14);
+
+    overflow: hidden;
+    display: block;
+
+    margin-bottom: 0.2rem;
+    padding-right: 2.2rem;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &-size {
+    @include text-style(12, $text-tertiary);
+
+    display: block;
+    margin-bottom: 0.8rem;
+  }
+
+  &-progress {
+    width: 100%;
+    height: 0.4rem;
+    border-radius: 999rem;
+    background-color: $bg-tertiary;
+  }
+
+  &-progress-bar {
+    width: 0;
+    height: 0.4rem;
+    border-radius: 999rem;
+    background-color: $bg-interactive-primary;
+  }
+}
+
+.alert.file-upload-alert {
+  position: fixed;
+  z-index: 9999;
+  top: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: transform 0.3s ease, opacity 0.3s ease;
+
+  &.active {
+    transform: translateX(-50%) translateY(0);
+    visibility: visible;
+    opacity: 1;
+  }
+}
