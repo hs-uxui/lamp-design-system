@@ -1,0 +1,39 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+%avatar-base {
+  @include inline-flexbox;
+
+  overflow: hidden;
+  border: 0.1rem solid $border-divide-bold;
+  border-radius: 50%;
+  background-color: $bg-primary;
+
+  img {
+    @include image-fit;
+  }
+}
+
+.avatar {
+  @extend %avatar-base;
+
+  flex-shrink: 0;
+
+  &-text {
+    @include text-style(14, $text-tertiary);
+  }
+
+  &.md {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+
+  &.sm {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}
+
+.user-profile {
+  @include flexbox($gap: 0.4rem);
+}
