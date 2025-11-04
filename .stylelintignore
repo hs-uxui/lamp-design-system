@@ -1,0 +1,4 @@
+lib/css/**
+**/*.css
+styles/base/_fonts.scss
+styles/base/_normalize.scss
