@@ -1,0 +1,119 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+.checkbox {
+  @include flexbox($gap: 0.2rem);
+
+  cursor: pointer;
+  position: relative;
+
+  input[type='checkbox'] {
+    cursor: pointer;
+
+    position: absolute;
+    z-index: $after-content-level;
+    inset: 0;
+
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 0.4rem;
+
+    opacity: 0;
+    background-color: $bg-primary;
+
+    transition: $base-transition;
+
+    &:hover + .custom-box {
+      border-color: $border-interactive-secondary-hovered;
+    }
+
+    &:active + .custom-box {
+      border-color: $border-interactive-secondary-pressed;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &:focus-visible + .custom-box {
+      box-shadow: 0 0 0 0.3rem $border-focus;
+    }
+  }
+
+  .custom-box {
+    position: relative;
+
+    display: block;
+
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 0.15rem solid $border-interactive-secondary;
+    border-radius: 0.4rem;
+
+    background-color: $bg-primary;
+
+    transition: $base-transition;
+  }
+
+  .material-symbols-rounded {
+    @include pos-center;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    font-size: 1.2rem;
+    color: $icon-interactive-inverse;
+
+    opacity: 0;
+
+    transition: $base-transition;
+  }
+
+  .checkbox-label {
+    @include text-style(13);
+
+    padding-left: 0.4rem;
+  }
+
+  // Checked state
+  &:has(input[type='checkbox']:checked) {
+    .custom-box {
+      border: none;
+      background-color: $bg-interactive-primary;
+    }
+
+    .material-symbols-rounded {
+      opacity: 1;
+    }
+  }
+
+  input[type='checkbox']:checked {
+    &:hover + .custom-box {
+      background-color: $bg-interactive-primary-hovered;
+    }
+
+    &:active + .custom-box {
+      background-color: $bg-interactive-primary-pressed;
+    }
+  }
+
+  // Disabled state
+  &:has(input[type='checkbox']:disabled) {
+    cursor: not-allowed;
+
+    .custom-box {
+      border: $border-disabled;
+      background-color: $bg-disabled;
+    }
+
+    .material-symbols-rounded {
+      color: $icon-disabled;
+      opacity: 1;
+    }
+
+    .checkbox-label {
+      color: $text-disabled;
+    }
+  }
+}
