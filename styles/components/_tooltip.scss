@@ -1,0 +1,44 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+.tooltip-wrapper {
+  position: relative;
+  width: fit-content;
+}
+
+.tooltip-content {
+  pointer-events: none;
+
+  position: absolute;
+  bottom: -2.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+
+  white-space: nowrap;
+
+  opacity: 0;
+  background-color: $bg-inverse-bolder;
+  box-shadow: $tooltip-shadow;
+
+  &-text {
+    @include text-style(12, $text-interactive-inverse);
+  }
+
+  &.visible {
+    opacity: 1;
+  }
+
+  &.align-left {
+    left: 0;
+    transform: none;
+  }
+
+  &.align-right {
+    right: 0;
+    left: auto;
+    transform: none;
+  }
+}
