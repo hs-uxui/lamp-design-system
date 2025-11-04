@@ -1,0 +1,118 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+%color-base-neutral {
+  background-color: $bg-inverse-bolder;
+}
+
+%color-base-information {
+  background-color: $bg-info-bold;
+}
+
+%color-base-success {
+  background-color: $bg-success-bold;
+}
+
+%color-base-warning {
+  background-color: $bg-warning-bold;
+}
+
+%color-base-error {
+  background-color: $bg-danger-bold;
+}
+
+%bage-base {
+  height: 2.2rem;
+  padding: 0 0.4rem;
+  border-radius: 999rem;
+}
+
+.badge-dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+
+  &.neutral {
+    @extend %color-base-neutral;
+  }
+
+  &.information {
+    @extend %color-base-information;
+  }
+
+  &.success {
+    @extend %color-base-success;
+  }
+
+  &.warning {
+    @extend %color-base-warning;
+  }
+
+  &.error {
+    @extend %color-base-error;
+  }
+}
+
+.badge-number {
+  @extend %bage-base;
+
+  @include inline-flexbox;
+
+  @include text-style(13, $text-interactive-inverse);
+
+  &.neutral {
+    @extend %color-base-neutral;
+  }
+
+  &.information {
+    @extend %color-base-information;
+  }
+
+  &.success {
+    @extend %color-base-success;
+  }
+
+  &.warning {
+    @extend %color-base-warning;
+  }
+
+  &.error {
+    @extend %color-base-error;
+  }
+}
+
+.badge-letter {
+  @extend %bage-base;
+
+  @include inline-flexbox;
+
+  &.neutral {
+    @include text-style(13, $text-interactive-secondary);
+
+    background-color: $bg-tertiary;
+  }
+
+  &.information {
+    @include text-style(13, $text-info-bold);
+
+    background-color: $bg-info-subtle;
+  }
+
+  &.success {
+    @include text-style(13, $text-success-bold);
+
+    background-color: $bg-success-subtle;
+  }
+
+  &.warning {
+    @include text-style(13, $text-warning-bold);
+
+    background-color: $bg-warning-subtle;
+  }
+
+  &.error {
+    @include text-style(13, $text-danger-bold);
+
+    background-color: $bg-danger-subtle;
+  }
+}
