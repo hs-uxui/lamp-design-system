@@ -1,0 +1,81 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+.dialog {
+  inset: 50% 0 0 50%;
+  transform: translate(-50%, -50%);
+
+  width: fit-content;
+  min-width: 40rem;
+  max-width: 96rem;
+  border: $border-divide-bolder;
+  border-radius: 1.6rem;
+
+  background-color: $bg-primary;
+  box-shadow: $modal-shadow;
+
+  &::backdrop {
+    background-color: var(--backdrop, transparent);
+  }
+
+  &-header {
+    position: relative;
+    width: 100%;
+    padding: 1.6rem 1.6rem 0;
+
+    .btn-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+    }
+  }
+
+  &-header-title {
+    @include text-style(16, $text-primary, 500);
+  }
+
+  &-content {
+    width: 100%;
+    padding: 1.6rem;
+  }
+
+  &-footer {
+    width: 100%;
+    padding: 1.2rem 1.6rem;
+    border-top: 0.1rem solid $color-gray-100;
+    border-radius: 0 0 1.6rem 1.6rem;
+
+    .actions-right {
+      @include flexbox(end, center, 0.8rem);
+
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  &.backdrop {
+    --backdrop: rgb(0 0 0 / 50%);
+  }
+
+  &.animation {
+    // 사라질 때 20px 아래로 이동하면서 사라짐
+    margin-top: 20px;
+    opacity: 0;
+    transition: 0.4s ease-in-out allow-discrete;
+
+    &:popover-open {
+      margin-top: 0;
+      opacity: 1;
+
+      @starting-style {
+        // 처음 열릴 때 시작 상태를 20px 위로 미리 정의
+        margin-top: 20px;
+        opacity: 0;
+      }
+    }
+  }
+}
+
+body:has(.dialog.hidden:popover-open) {
+  overflow: hidden;
+}
