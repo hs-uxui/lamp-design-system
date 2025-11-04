@@ -1,0 +1,88 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+.user-menu {
+  position: relative;
+  width: fit-content;
+
+  &-trigger {
+    @include flexbox(start, $gap: 0.8rem);
+
+    &.is-active + .user-menu-dropdown {
+      display: block;
+    }
+
+    &.is-active .user-menu-toggle-icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  &-info {
+    @include flexbox(start, $gap: 0.4rem);
+
+    .user-menu-name {
+      @include text-style(14, $text-secondary, 500);
+    }
+
+    .user-menu-toggle-icon {
+      font-size: 1.6rem;
+      transition: transform 0.3s ease-in-out;
+    }
+  }
+
+  &-dropdown {
+    position: absolute;
+    top: calc(100% + 0.6rem);
+    right: 0;
+
+    display: none;
+
+    width: 16rem;
+    padding: 0.4rem;
+    border: 0.1rem solid $border-divide;
+    border-radius: 0.8rem;
+
+    background-color: $bg-primary;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 16%);
+
+    .menu-item {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border-radius: 0.6rem;
+      background-color: $bg-primary;
+
+      &:hover {
+        background-color: $bg-interactive-secondary;
+      }
+
+      &:active {
+        background-color: $bg-interactive-secondary-hovered;
+      }
+    }
+
+    .menu-link {
+      @include flexbox(start, $gap: 0.6rem);
+
+      width: 100%;
+
+      &-icon {
+        font-size: 2rem;
+        color: $icon-tertiary;
+      }
+
+      &-text {
+        @include text-style(14, $text-tertiary);
+      }
+
+      &:hover {
+        .menu-link-icon {
+          color: $icon-secondary;
+        }
+
+        .menu-link-text {
+          color: $text-secondary;
+        }
+      }
+    }
+  }
+}
