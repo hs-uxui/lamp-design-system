@@ -1,0 +1,128 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+.link {
+  @include inline-flexbox($gap: 0.4rem);
+  @include text-style(14);
+  @include focus-visible;
+
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.6rem;
+  transition: $base-transition;
+
+  .material-symbols-rounded {
+    font-size: 2rem;
+    color: $icon-secondary;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: $bg-interactive-secondary;
+  }
+
+  &:active:not(:disabled) {
+    background-color: $bg-interactive-secondary-hovered;
+  }
+}
+
+.breadcrumb {
+  &-list {
+    @include flexbox(start, center, 2rem);
+
+    min-width: 0;
+  }
+
+  &-item {
+    position: relative;
+    min-width: 0;
+
+    &::after {
+      @include pos-center-y;
+
+      content: '';
+
+      right: -1.8rem;
+
+      display: block;
+
+      width: 1.6rem;
+      height: 1.6rem;
+
+      background-image: url('../../assets/svg/chevron-right.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    &:last-child {
+      &::after {
+        display: none;
+      }
+    }
+
+    .material-symbols-rounded {
+      flex: 0 0 auto;
+      font-size: 2rem;
+      color: $icon-disabled;
+    }
+
+    &[aria-current='page'] {
+      flex: 1 1 auto;
+    }
+
+    &[aria-current='page'] .breadcrumb-current {
+      @include text-style(14, $text-secondary, 500);
+
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .breadcrumb-link,
+    .breadcrumb-text {
+      @include text-style(14, $text-disabled);
+    }
+  }
+
+  &-link {
+    @include inline-flexbox(start, center, 0.2rem);
+
+    min-width: 0;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.6rem;
+    transition: $base-transition;
+
+    &:hover {
+      background-color: $bg-interactive-secondary;
+    }
+
+    &:active {
+      background-color: $bg-interactive-secondary-hovered;
+    }
+  }
+
+  .breadcrumb-text {
+    overflow: hidden;
+    flex: 1 1 auto;
+
+    min-width: 0;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .breadcrumb-link .breadcrumb-text {
+    // max-width: 20ch;
+  }
+
+  .breadcrumb-current {
+    @include inline-flexbox(start, center, 0.2rem);
+
+    flex: 1 1 auto;
+    min-width: 0;
+
+    .breadcrumb-text {
+      max-width: 36ch;
+      font-weight: 500;
+      color: $text-secondary;
+    }
+  }
+}
