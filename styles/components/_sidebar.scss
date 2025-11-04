@@ -1,0 +1,320 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+.sidebar {
+  @include column-flexbox(start, start);
+  @include scrollbar-base;
+
+  position: relative;
+  z-index: $sidebar-menu-level;
+
+  overflow-y: auto;
+
+  width: 26rem;
+  height: 100vh;
+  border-right: 0.1rem solid $border-divide-bold;
+
+  background-color: $bg-primary;
+
+  ul {
+    width: 100%;
+  }
+}
+
+.sidebar-header {
+  @include flexbox(between);
+
+  position: relative;
+  width: 100%;
+  padding: 2.4rem;
+
+  .user-info {
+    @include flexbox($gap: 0.8rem);
+  }
+
+  .user-name {
+    @include text-style(14);
+  }
+
+  .user-email {
+    @include text-style(12, $text-tertiary);
+  }
+
+  .sidebar-toggle {
+    @include focus-visible;
+
+    position: absolute;
+    right: 1.6rem;
+    transform: translateY(0);
+
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 0.6rem;
+
+    transition: background-color 0.2s ease-in-out;
+
+    .material-symbols-rounded {
+      color: $icon-disabled;
+      transition: color 0.2s ease-in-out;
+    }
+
+    &:hover {
+      background-color: $bg-interactive-selected;
+
+      span {
+        color: $icon-interactive-selected;
+      }
+    }
+  }
+}
+
+.sidebar-navigation {
+  @include column-flexbox(start, start, 1.6rem);
+
+  flex: 1;
+  width: 100%;
+  padding: 0 1.6rem 2.4rem;
+}
+
+/* 메뉴 리스트 */
+.sidebar-menu {
+  @include column-flexbox(start, start);
+
+  flex: 1;
+  width: 100%;
+
+  .depth-1 {
+    ul {
+      padding-left: 2.6rem;
+    }
+
+    > .menu-button .menu-button-label {
+      color: $text-tertiary;
+    }
+  }
+
+  /* 버튼 공통 스타일 */
+  .menu-button {
+    @include flexbox(start, center, 0.6rem);
+    @include focus-visible;
+
+    position: relative;
+
+    width: 100%;
+    height: 4rem;
+    padding: 0 0.8rem;
+    border-radius: 0.6rem;
+
+    transition: background-color ease-in-out 0.2s;
+
+    &-label {
+      @include text-style(14, $text-disabled);
+
+      white-space: nowrap;
+    }
+
+    .material-symbols-rounded {
+      font-size: 2rem;
+      color: $icon-tertiary;
+
+      &:last-child {
+        @include pos-center-y;
+
+        right: 0.8rem;
+        font-size: 2rem;
+      }
+    }
+
+    &:hover {
+      background-color: $bg-interactive-secondary;
+    }
+
+    &:active {
+      background-color: $bg-interactive-secondary-hovered;
+    }
+  }
+
+  .sub-menu {
+    position: relative;
+    display: none;
+
+    &::before {
+      content: '';
+
+      position: absolute;
+      top: 0;
+      left: 1.7rem;
+
+      width: 0.1rem;
+      height: 100%;
+
+      background-color: $border-divide-bold;
+    }
+
+    &.is-open {
+      display: block;
+    }
+  }
+
+  /* 2 Depth 메뉴 활성화 */
+  .depth-2 {
+    .menu-button {
+      height: 3.2rem;
+    }
+
+    > .menu-button .material-symbols-rounded {
+      color: $icon-disabled;
+    }
+
+    .menu-button.is-open {
+      .material-symbols-rounded {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  /* 1 Depth 메뉴 활성화 */
+  .menu-button.is-open {
+    .material-symbols-rounded {
+      color: $icon-primary;
+    }
+
+    .menu-button-label {
+      color: $text-primary;
+    }
+  }
+
+  /* Depth 없는 메뉴 활성화 */
+  .menu-button.is-active {
+    background-color: $bg-interactive-selected;
+
+    .material-symbols-rounded {
+      color: $icon-interactive-selected;
+    }
+
+    .menu-button-label {
+      color: $text-interactive-selected;
+    }
+  }
+}
+
+/* ---------- 사이드바 축소 상태 ---------- */
+.sidebar.is-closed {
+  overflow: visible;
+  width: 5.6rem;
+
+  .sidebar-header {
+    display: block;
+    padding: 1.2rem 1rem 7.2rem;
+
+    &::before {
+      @include pos-center-x;
+
+      content: '';
+
+      bottom: 1.6rem;
+
+      width: 3.2rem;
+      height: 0.1rem;
+
+      background-color: $border-divide-bold;
+    }
+
+    .user-info {
+      transform: translateY(4.4rem);
+    }
+
+    .user-details {
+      display: none;
+    }
+
+    .sidebar-toggle {
+      top: 1.2rem;
+      right: 1rem;
+      transform: translateY(0);
+
+      i {
+        color: $icon-interactive-primary;
+      }
+    }
+  }
+
+  .sidebar-navigation {
+    padding: 0;
+  }
+
+  .form-select {
+    display: none;
+  }
+
+  .sidebar-menu {
+    > ul {
+      @include column-flexbox($gap: 0.4rem);
+    }
+  }
+
+  .depth-1 {
+    position: relative;
+    width: 100%;
+
+    @include flexbox;
+
+    > .menu-button {
+      width: 3.6rem;
+      height: 3.6rem;
+
+      .menu-button-label {
+        display: none;
+      }
+
+      span:last-child {
+        display: none;
+      }
+    }
+
+    > .sub-menu {
+      @include scrollbar-base;
+
+      position: absolute;
+      top: 0;
+      left: 5.5rem;
+
+      overflow-y: auto;
+
+      width: fit-content;
+      min-width: 20rem;
+      height: fit-content;
+      max-height: 33rem;
+      padding: 0.4rem;
+      border: 0.1rem solid $border-divide-bold;
+      border-radius: 0.6rem;
+
+      visibility: hidden;
+      opacity: 0;
+      background-color: $bg-primary;
+      box-shadow: $options-shadow;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    &:hover {
+      > .sub-menu {
+        display: block;
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    &.is-active {
+      > .menu-button {
+        background-color: $bg-interactive-selected;
+
+        .material-symbols-rounded {
+          color: $text-interactive-selected;
+        }
+      }
+    }
+  }
+}
