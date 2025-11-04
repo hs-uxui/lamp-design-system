@@ -1,0 +1,240 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+.chart-row {
+  @include flexbox(start, start, 1.2rem);
+
+  height: 100%;
+}
+
+.chart-container {
+  width: 100%;
+  height: 100%;
+  border: 0.1rem solid $border-divide-bold;
+  border-radius: 0.8rem;
+
+  .chart-header {
+    @include flexbox(between);
+
+    padding: 0.6rem 0.6rem 0.6rem 1.2rem;
+    border-bottom: 0.1rem solid $border-divide-bold;
+
+    h4 {
+      @include text-style(14, $text-primary, 500);
+    }
+  }
+}
+
+.chart-detail-container {
+  width: 100%;
+  height: 100%;
+  padding: 0.8rem 1.2rem;
+}
+
+.grid-bar-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.chart-grid {
+  @include column-flexbox(start, start, 1.6rem);
+
+  width: 100%;
+  height: 100%;
+
+  .grid-line {
+    @include flexbox(start, center, 0.6rem);
+
+    width: 100%;
+    height: 100%;
+
+    .grid-label {
+      @include text-style(12, $text-tertiary);
+
+      display: block;
+      flex-shrink: 0;
+
+      width: 2rem;
+
+      line-height: 1.2rem;
+      text-align: right;
+    }
+
+    .gird-line-horizontal {
+      width: 100%;
+      border: 0.05rem dashed $border-divide-bold;
+    }
+  }
+
+  .base-line {
+    .grid-label-base {
+      opacity: 0;
+    }
+
+    .gird-line-horizontal {
+      border: 0.1rem solid $border-divide-bolder;
+    }
+  }
+}
+
+.chart-bars {
+  @include flexbox(end, end, $gap: 5.4rem);
+
+  position: absolute;
+  bottom: 0.6rem;
+  left: calc(50% + 1rem);
+  transform: translateX(-50%);
+}
+
+.bar-group {
+  cursor: pointer;
+  position: relative;
+
+  &::before {
+    @include pos-center-x;
+
+    content: '';
+
+    z-index: $before-content-level;
+    top: -0.6rem;
+
+    display: none;
+
+    width: calc(100% + 1.2rem);
+    height: calc(100% + 3rem);
+    border-radius: 0.6rem;
+
+    background-color: $bg-interactive-selected;
+  }
+
+  &:hover .bar-indicator {
+    display: block;
+  }
+
+  &:hover::before {
+    display: block;
+  }
+}
+
+.bar-item {
+  @include column-flexbox($gap: 0.2rem);
+
+  &-status {
+    width: 3.2rem;
+    border-radius: 0.2rem;
+
+    &.completed {
+      height: 6.8rem;
+      background-color: $system-completed;
+    }
+
+    &.in-progress {
+      height: 3rem;
+      background-color: $system-progress;
+    }
+
+    &.delayed {
+      height: 1.8rem;
+      background-color: $system-delay;
+    }
+
+    &.open {
+      height: 3rem;
+      background-color: $system-delay;
+    }
+
+    &.close {
+      height: 1.8rem;
+      background-color: $system-completed;
+    }
+
+    &.total {
+      height: 4.7rem;
+      background-color: $system-total;
+    }
+  }
+}
+
+.bar-indicator {
+  @include column-flexbox(start, start);
+  @include pos-center-y;
+
+  z-index: $bar-indicator-level;
+  left: 4.2rem;
+
+  display: none;
+
+  width: 8rem;
+  padding: 0.8rem;
+  border: 0.1rem solid $border-divide-bold;
+  border-radius: 0.6rem;
+
+  background: $opacity-white-80;
+  backdrop-filter: blur(20px);
+  box-shadow: $shadow-md;
+
+  .status-group {
+    @include column-flexbox(start, start, 0.4rem);
+
+    width: 100%;
+    padding-bottom: 0.4rem;
+  }
+
+  .status-item {
+    @include flexbox(between);
+
+    width: 100%;
+
+    &.total {
+      padding-top: 0.4rem;
+      border-top: 0.1rem solid $border-divide-bold;
+    }
+  }
+
+  .status-label {
+    @include flexbox(start, center, 0.4rem);
+  }
+
+  .status-color {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 999rem;
+
+    &.completed,
+    &.close {
+      background-color: $system-completed;
+    }
+
+    &.in-progress {
+      background-color: $system-progress;
+    }
+
+    &.delayed,
+    &.open {
+      background-color: $system-delay;
+    }
+  }
+
+  .status-name {
+    @include text-style(12, $text-tertiary);
+  }
+
+  .status-value {
+    @include text-style(12, $text-secondary, 500);
+  }
+}
+
+.label-list {
+  @include flexbox;
+
+  position: relative;
+  z-index: 1;
+  padding-left: 2.1rem;
+
+  .label-item {
+    @include text-style(12, $text-tertiary);
+
+    line-height: 1.2rem;
+  }
+}

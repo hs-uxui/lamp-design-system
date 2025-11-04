@@ -1,0 +1,95 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+%legend-base {
+  @include flexbox;
+
+  padding: 0.4rem 0.8rem 0 0.4rem;
+
+  .legend-item {
+    @include column-flexbox(start, start);
+
+    padding-left: 0.8rem;
+    border-left: 0.1rem solid $border-divide-bold;
+
+    &:first-child {
+      border: none;
+    }
+  }
+
+  .legend-item-content {
+    @include flexbox(start, center, 0.4rem);
+  }
+
+  .legend-item-color {
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 0.2rem;
+  }
+
+  .legend-item-label {
+    @include text-style(12, $text-tertiary);
+  }
+
+  .legend-item-value {
+    @include text-style(14, $text-primary, 500);
+  }
+
+  .legend-item.completed {
+    .legend-item-color {
+      background-color: $system-completed;
+    }
+  }
+
+  .legend-item.in-progress {
+    .legend-item-color {
+      background-color: $system-progress;
+    }
+  }
+
+  .legend-item.delayed {
+    .legend-item-color {
+      background-color: $system-delay;
+    }
+  }
+
+  .legend-item.pending {
+    .legend-item-color {
+      background-color: $system-pending;
+    }
+  }
+
+  .legend-item.total {
+    .legend-item-color {
+      background-color: $system-total;
+    }
+  }
+
+  .legend-item.open {
+    .legend-item-color {
+      background-color: $system-delay;
+    }
+  }
+
+  .legend-item.close {
+    .legend-item-color {
+      background-color: $system-completed;
+    }
+  }
+}
+
+.legend {
+  @extend %legend-base;
+
+  &.md {
+    .legend-item {
+      width: 25%;
+    }
+  }
+
+  &.sm {
+    .legend-item {
+      width: 33.3%;
+    }
+  }
+}
