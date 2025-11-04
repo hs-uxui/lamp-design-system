@@ -1,0 +1,311 @@
+.SelectBox {
+  padding: 0;
+}
+
+.SumoSelect {
+  min-width: 30rem;
+}
+
+.search-area .SumoSelect {
+  flex-grow: 1;
+}
+
+.sidebar-navigation .SumoSelect {
+  min-width: 100%;
+}
+
+.SumoSelect .no-match {
+  padding: 12px;
+  border-top: 1px solid #d1d5db;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.SumoSelect.open .search-txt {
+  height: 100%;
+  padding: 0 12px;
+  font-size: 14px;
+}
+
+.SumoSelect .search-txt::placeholder {
+  color: #9ca3af;
+}
+
+.SumoSelect.open > .CaptionCont > label {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.SumoSelect.open > .CaptionCont,
+.SumoSelect:focus > .CaptionCont,
+.SumoSelect:hover > .CaptionCont {
+  border-color: #acb9ff;
+  box-shadow: none;
+}
+
+.SumoSelect:focus-visible > .CaptionCont {
+  box-shadow: 0 0 0 3px #e1e5ff;
+}
+
+.SumoSelect > .CaptionCont {
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 36px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+
+.SumoSelect > .CaptionCont > span {
+  width: 100%;
+  padding: 0 40px 0 12px;
+  font-size: 14px;
+  color: #111827;
+}
+
+.SumoSelect.disabled > .CaptionCont > span {
+  color: #9ca3af;
+}
+
+.SumoSelect > .CaptionCont > span.placeholder {
+  font-style: normal;
+  color: #9ca3af;
+}
+
+.SumoSelect > .CaptionCont > label {
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+
+  width: 20px;
+  height: 20px;
+
+  transition: transform 0.3s ease-in-out;
+}
+
+.SumoSelect > .CaptionCont > label > i {
+  background-image: url('../../assets/svg/keyboard_arrow_down.svg');
+}
+
+.SumoSelect > .optWrapper {
+  z-index: 20;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 8%);
+}
+
+.SumoSelect.open > .optWrapper {
+  top: 40px;
+}
+
+.SumoSelect > .optWrapper > .options {
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.SumoSelect > .optWrapper > .options > li.opt:first-child,
+.SumoSelect > .optWrapper > .options > li.opt:last-child {
+  border-bottom: none;
+  border-radius: 6px;
+}
+
+.SumoSelect > .optWrapper.okCancelInMulti > .options {
+  border-radius: 2px 2px 0 0;
+}
+
+.SumoSelect > .optWrapper.selall > .options {
+  border-radius: 0 0 2px 2px;
+}
+
+.SumoSelect > .optWrapper.selall.okCancelInMulti > .options {
+  border-radius: 0;
+}
+
+.SumoSelect > .optWrapper.selall.okCancelInMulti > .options > .opt {
+  margin-bottom: 2px;
+}
+
+.SumoSelect > .optWrapper.selall.okCancelInMulti > .options > .opt:last-child {
+  margin-bottom: 0;
+}
+
+.SumoSelect > .optWrapper.selall > .options > li.opt:first-child,
+.SumoSelect > .optWrapper.selall > .options > li.opt:last-child {
+  border-radius: 6px;
+}
+
+.SumoSelect > .optWrapper > .options li.group.disabled > label {
+  opacity: 0.5;
+}
+
+.SumoSelect > .optWrapper > .options li ul li.opt {
+  padding-left: 22px;
+}
+
+.SumoSelect > .optWrapper.multiple > .options li ul li.opt {
+  padding-left: 50px;
+}
+
+.SumoSelect > .optWrapper.isFloating > .options {
+  max-height: 100%;
+  box-shadow: 0 0 100px #595959;
+}
+
+.SumoSelect > .optWrapper > .options li.opt {
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  height: 32px;
+  margin-bottom: 4px;
+  padding: 0 8px;
+  border-bottom: none;
+  border-radius: 6px;
+}
+
+.SumoSelect > .optWrapper > .options li.opt:last-child {
+  margin-bottom: 0;
+}
+
+.SumoSelect > .optWrapper > .options li.opt:hover {
+  background-color: #f4f4f5;
+}
+
+.SumoSelect .select-all.sel,
+.SumoSelect > .optWrapper > .options li.opt.sel {
+  z-index: 1;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px #e1e5ff;
+}
+
+.SumoSelect > .optWrapper > .options li label {
+  font-size: 14px;
+  color: #111827;
+}
+
+.SumoSelect > .optWrapper > .options li.opt.selected {
+  background-color: #f3f5ff;
+}
+
+.SumoSelect > .optWrapper > .options li.opt.selected:hover {
+  background-color: #e1e5ff;
+}
+
+.SumoSelect > .optWrapper > .options li.opt.selected label {
+  color: #4c64e7;
+}
+
+.SumoSelect .select-all > span i,
+.SumoSelect > .optWrapper.multiple > .options li.opt span i {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 4px;
+
+  box-shadow: none;
+}
+
+.SumoSelect > .optWrapper.multiple > .options li.opt {
+  padding-left: 32px;
+}
+
+.SumoSelect .select-all > span,
+.SumoSelect > .optWrapper.multiple > .options li.opt span {
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+
+  width: 16px;
+  height: 16px;
+  margin-left: 0;
+}
+
+.SumoSelect .select-all.partial > span i {
+  background-color: #e1e5ff;
+}
+
+.SumoSelect .select-all.selected > label {
+  color: #4c64e7;
+}
+
+.SumoSelect > .optWrapper > .MultiControls {
+  border-top: 1px solid #e5e7eb;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.SumoSelect > .optWrapper.multiple.okCancelInMulti > .MultiControls > p {
+  padding: 8px;
+}
+
+.SumoSelect > .optWrapper.multiple.okCancelInMulti > .MultiControls > p:focus {
+  border-color: #e5e7eb;
+  background-color: #f3f4f6;
+  box-shadow: none;
+}
+
+.SumoSelect > .optWrapper.multiple > .MultiControls > p:hover {
+  background-color: #f9fafb;
+}
+
+.SumoSelect > .optWrapper.multiple > .MultiControls > p.btnOk {
+  border-right: 1px solid #e5e7eb;
+  border-radius: 0;
+  font-size: 14px;
+}
+
+.SumoSelect > .optWrapper.multiple > .MultiControls > p.btnCancel {
+  border-radius: 0;
+  font-size: 14px;
+}
+
+.SumoSelect .select-all.partial > span i,
+.SumoSelect .select-all.selected > span i,
+.SumoSelect > .optWrapper.multiple > .options li.opt.selected span i {
+  background-color: #546efe;
+  background-image: url('../../assets/svg/check.svg');
+}
+
+.SumoSelect.disabled > .CaptionCont {
+  border-color: #d1d5db;
+  background-color: #e5e7eb;
+}
+
+.SumoSelect.disabled > .CaptionCont > label > i {
+  background-image: url('../../assets/svg/keyboard_arrow_down_disabled.svg');
+}
+
+.SumoSelect .select-all {
+  height: 36px;
+  padding: 0 0 0 36px;
+  border-bottom: 1px solid #e5e7eb;
+
+  &:hover {
+    background-color: #f9fafb;
+  }
+}
+
+.SumoSelect .select-all > span {
+  left: 12px;
+}
+
+.SumoSelect .select-all > label,
+.SumoSelect .select-all > span i {
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 36px;
+}
+
+.SumoSelect .select-all.partial > span i {
+  background-color: #e1e5ff;
+}
+
+.SumoSelect .select-all.selected > label {
+  color: #4c64e7;
+}
