@@ -1,0 +1,272 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use '../variables' as *;
+
+@mixin btn-size($size) {
+  width: map.get($btn-sizes, $size);
+  height: map.get($btn-sizes, $size);
+  border-radius: map.get($btn-radius, $size);
+
+  .material-symbols-rounded {
+    font-size: map.get($icon-sizes, $size);
+  }
+}
+
+@mixin primary-btn-style($variant) {
+  @if $variant == 'filled' {
+    color: $text-interactive-inverse;
+    background-color: $bg-interactive-primary;
+
+    .btn-icon {
+      color: $icon-interactive-inverse;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: $bg-interactive-primary-hovered;
+    }
+
+    &:active:not(:disabled) {
+      background-color: $bg-interactive-primary-pressed;
+    }
+
+    &:disabled {
+      color: $text-disabled;
+      background-color: $bg-disabled;
+
+      .btn-icon {
+        color: $icon-disabled;
+      }
+    }
+  }
+
+  @if $variant == 'outlined' {
+    border: 0.1rem solid $border-interactive-primary;
+    color: $icon-interactive-primary;
+    background-color: $bg-primary;
+
+    .btn-icon {
+      color: $icon-interactive-primary;
+    }
+
+    &:hover:not(:disabled) {
+      border-color: $border-interactive-primary-hovered;
+      background-color: $bg-interactive-selected;
+    }
+
+    &:active:not(:disabled) {
+      border-color: $border-interactive-primary-pressed;
+      background-color: $bg-interactive-selected-hover;
+    }
+
+    &:disabled {
+      border-color: $border-disabled;
+      color: $text-disabled;
+
+      .btn-icon {
+        color: $icon-disabled;
+      }
+    }
+  }
+
+  @if $variant == 'text' {
+    color: $icon-interactive-primary;
+    background-color: transparent;
+
+    .btn-icon {
+      color: $icon-interactive-primary;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: $bg-interactive-selected;
+    }
+
+    &:active:not(:disabled) {
+      background-color: $bg-interactive-selected-hover;
+    }
+
+    &:disabled {
+      color: $text-disabled;
+
+      .btn-icon {
+        color: $icon-disabled;
+      }
+    }
+  }
+}
+
+@mixin secondary-btn-style($variant) {
+  @if $variant == 'filled' {
+    color: $text-interactive-secondary;
+    background-color: $bg-interactive-secondary;
+
+    .btn-icon {
+      color: $icon-interactive-secondary;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: $bg-interactive-secondary-hovered;
+    }
+
+    &:active:not(:disabled) {
+      background-color: $bg-interactive-secondary-pressed;
+    }
+
+    &:disabled {
+      color: $text-disabled;
+      background-color: $bg-disabled;
+
+      .btn-icon {
+        color: $icon-disabled;
+      }
+    }
+  }
+
+  @if $variant == 'outlined' {
+    border: 0.1rem solid $border-interactive-secondary;
+    color: $text-interactive-secondary;
+    background-color: $bg-primary;
+
+    .btn-icon {
+      color: $icon-interactive-secondary;
+    }
+
+    &:hover:not(:disabled) {
+      border-color: $border-interactive-secondary-hovered;
+      background-color: $bg-interactive-secondary;
+    }
+
+    &:active:not(:disabled) {
+      border-color: $border-interactive-secondary-pressed;
+      background-color: $bg-interactive-secondary-hovered;
+    }
+
+    &:disabled {
+      color: $text-disabled;
+
+      .btn-icon {
+        color: $icon-disabled;
+      }
+    }
+  }
+
+  @if $variant == 'text' {
+    color: $text-interactive-secondary;
+    background-color: transparent;
+
+    .btn-icon {
+      color: $icon-interactive-secondary;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: $bg-interactive-secondary;
+    }
+
+    &:active:not(:disabled) {
+      background-color: $bg-interactive-secondary-hovered;
+    }
+
+    &:disabled {
+      color: $text-disabled;
+
+      .btn-icon {
+        color: $icon-disabled;
+      }
+    }
+  }
+}
+
+@mixin destructive-btn-style($variant) {
+  @if $variant == 'filled' {
+    color: $text-danger;
+    background-color: $bg-interactive-danger;
+
+    .btn-icon {
+      color: $icon-danger;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: $bg-interactive-danger-hovered;
+    }
+
+    &:active:not(:disabled) {
+      background-color: $bg-interactive-danger-pressed;
+    }
+
+    &:disabled {
+      color: $text-disabled;
+      background-color: $bg-disabled;
+
+      .btn-icon {
+        color: $icon-disabled;
+      }
+    }
+  }
+
+  @if $variant == 'outlined' {
+    border: 0.1rem solid $border-interactive-danger;
+    color: $text-danger;
+    background-color: $bg-primary;
+
+    .btn-icon {
+      color: $icon-danger;
+    }
+
+    &:hover:not(:disabled) {
+      border-color: $border-interactive-danger-hovered;
+      background-color: $bg-danger-subtle;
+    }
+
+    &:active:not(:disabled) {
+      border-color: $border-interactive-danger-pressed;
+      background-color: $bg-danger-subtle-pressed;
+    }
+
+    &:disabled {
+      border-color: $border-disabled;
+      color: $text-disabled;
+
+      .btn-icon {
+        color: $icon-disabled;
+      }
+    }
+  }
+
+  @if $variant == 'text' {
+    color: $text-danger;
+    background-color: transparent;
+
+    .btn-icon {
+      color: $icon-danger;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: $bg-danger-subtle;
+
+      .btn-icon {
+        color: $icon-danger;
+      }
+    }
+
+    &:active:not(:disabled) {
+      background-color: $bg-danger-subtle-pressed;
+
+      .btn-icon {
+        color: $icon-danger;
+      }
+    }
+
+    &:disabled {
+      color: $text-disabled;
+
+      .btn-icon {
+        color: $icon-disabled;
+      }
+    }
+  }
+}
+
+@mixin focus-visible($color: $border-focus) {
+  &:focus-visible:not(:disabled) {
+    box-shadow: 0 0 0 0.3rem $color;
+  }
+}

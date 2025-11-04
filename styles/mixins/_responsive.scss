@@ -1,0 +1,82 @@
+@use 'sass:map';
+
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+);
+
+@function bp($key) {
+  @return map.get($breakpoints, $key);
+}
+
+/// max-width 미디어쿼리
+@mixin max($key) {
+  $value: bp($key);
+
+  @if $value {
+    @media screen and (max-width: $value - 1) {
+      @content;
+    }
+  }
+}
+
+/// min-width 미디어쿼리
+@mixin min($key) {
+  $value: bp($key);
+
+  @if $value {
+    @media screen and (min-width: $value) {
+      @content;
+    }
+  }
+}
+
+@mixin responsive-max($screen) {
+  $max-width: bp($screen);
+
+  @if $max-width {
+    @media screen and (max-width: $max-width - 1) {
+      @content;
+    }
+  }
+}
+
+@mixin between($from, $to) {
+  $min: bp($from);
+  $max: bp($to);
+
+  @if $min and $max {
+    @media screen and (min-width: $min) and (max-width: $max - 1) {
+      @content;
+    }
+  }
+}
+
+/// 데스크탑 전용 호버 영역
+@mixin desktop-hover-only {
+  @include min(lg) {
+    @content;
+  }
+}
+
+@mixin hide-above($key) {
+  @include min($key) {
+    display: none !important;
+  }
+}
+
+@mixin hide-below($key) {
+  @include max($key) {
+    display: none !important;
+  }
+}
+
+.lg-hidden {
+  @include hide-above(lg);
+}
+
+.lg-only {
+  @include hide-below(lg);
+}

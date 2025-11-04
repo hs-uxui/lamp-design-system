@@ -1,0 +1,38 @@
+@use '../variables' as *;
+
+@mixin no-scrollbar() {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin scrollbar-base($width: 0.8rem, $height: 0.8rem) {
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $height;
+    background: $scroll-track;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 999rem;
+    background: $scroll-thumb;
+  }
+}
+
+@mixin table-scrollbar() {
+  @include scrollbar-base;
+
+  &::-webkit-scrollbar {
+    border-left: 0.1rem solid $border-divide-bold;
+    border-radius: 0 1.2rem 1.2rem 0;
+  }
+}
+
+@mixin option-scrollbar() {
+  @include scrollbar-base;
+
+  &::-webkit-scrollbar {
+    border-left: 0.1rem solid $border-divide-bold;
+    border-radius: 0 0.6rem 0.6rem 0;
+  }
+}

@@ -1,0 +1,529 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+// ------------ Common ------------
+.dashboard-card {
+  @include column-flexbox(start, start, 1.2rem);
+
+  width: 100%;
+  height: 100%;
+  padding: 1.2rem;
+  border: 0.1rem solid $border-divide-bold;
+  border-radius: 1.2rem;
+
+  background-color: $bg-primary;
+}
+
+.dashboard-header {
+  @include flexbox(between, center, 0.8rem);
+
+  width: 100%;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.8rem;
+  background-color: $bg-surface-muted;
+
+  &-title {
+    @include flexbox($gap: 0.6rem);
+
+    .material-symbols-rounded {
+      font-size: 2rem;
+    }
+
+    h2 {
+      @include text-style(16, $text-secondary, 500);
+    }
+  }
+
+  &-meta {
+    @include flexbox($gap: 3.2rem);
+
+    .meta-item {
+      @include text-style(14, $text-tertiary, 500);
+    }
+
+    span {
+      color: $text-primary;
+    }
+  }
+}
+
+.dashboard-content {
+  flex-grow: 1;
+  width: 100%;
+}
+
+// ------------ Layout ------------
+.project-dashboard-container {
+  @include flexbox(start, start);
+
+  overflow: hidden;
+  flex-grow: 1;
+  background-color: $color-light-gray-100;
+}
+
+.dashboard-main {
+  @include column-flexbox(start, start, 1.6rem);
+
+  flex: 1;
+  flex-shrink: 1;
+
+  width: calc(100% - 40rem);
+  height: 100%;
+  padding: 1.6rem 0.8rem 1.6rem 1.6rem;
+}
+
+.dashboard-row {
+  @include flexbox(start, start, 1.6rem);
+
+  flex-grow: 1;
+  width: 100%;
+
+  .dashboard-card {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.dashboard-side {
+  @include column-flexbox(between, center, 1.6rem);
+
+  width: 40rem;
+  height: 100%;
+  padding: 1.6rem 1.6rem 1.6rem 0.8rem;
+}
+
+// ------------ 프로젝트 상태 컬럼------------
+.project-status-column {
+  @include column-flexbox(between, start, 1.6rem);
+
+  flex-grow: 1;
+
+  width: 100%;
+  height: 100%;
+  border: 0.1rem solid $border-divide-bold;
+  border-radius: 1.2rem;
+
+  background-color: $bg-primary;
+
+  .dashboard-card {
+    border: none;
+    background-color: transparent;
+  }
+}
+
+// ------------ 1. 프로젝트 진척율 및 상태 ------------
+.dashboard-card.project-status {
+  height: fit-content;
+  padding: 1.2rem 1.2rem 0;
+
+  .dashboard-content {
+    @include flexbox(start, start, 1.6rem);
+
+    flex-grow: 1;
+  }
+
+  .update-info {
+    @include flexbox(start, $gap: 1.2rem);
+
+    margin-bottom: 0.8rem;
+
+    &-label {
+      @include text-style(14);
+    }
+
+    &-time {
+      @include text-style(14, $text-primary, 500);
+    }
+  }
+
+  .progress-overview {
+    flex-grow: 1;
+
+    &-main {
+      @include flexbox($gap: 0.8rem);
+
+      flex-grow: 1;
+      height: calc(100% - 2.2rem);
+      margin-bottom: 1.2rem;
+
+      .title {
+        @include text-style(14, $text-secondary, 500);
+      }
+
+      .percentage {
+        @include text-style(24, $text-secondary, 600);
+      }
+    }
+  }
+
+  .status-overall,
+  .status-item {
+    @include column-flexbox(between, start, 0.4rem);
+
+    width: 16rem;
+    padding: 0.8rem;
+    border-radius: 0.8rem;
+  }
+
+  .status-overall {
+    border: 0.1rem solid $border-warning;
+    background-color: $bg-warning-subtle;
+
+    .status-value {
+      @include flexbox(between, end);
+
+      width: 100%;
+    }
+
+    .status-symbol {
+      @include flexbox;
+
+      span {
+        @include text-style(18, $weight: 600);
+      }
+    }
+
+    .material-symbols-rounded {
+      font-size: 2rem;
+    }
+
+    &.success {
+      border-color: $border-success;
+      background-color: $bg-success-subtle;
+
+      .percentage {
+        color: $text-success;
+      }
+
+      .status-symbol {
+        span {
+          color: $text-success;
+        }
+      }
+    }
+
+    &.warning {
+      border-color: $border-warning;
+      background-color: $bg-warning-subtle;
+
+      .percentage {
+        color: $text-warning;
+      }
+
+      .status-symbol {
+        span {
+          color: $text-warning;
+        }
+      }
+    }
+
+    &.delay {
+      border-color: $border-danger;
+      background-color: $bg-danger-subtle;
+
+      .percentage {
+        color: $text-danger;
+      }
+
+      .status-symbol {
+        span {
+          color: $text-danger;
+        }
+      }
+    }
+  }
+
+  .progress-overview-details {
+    @include flexbox;
+
+    border: 0.1rem solid $border-divide-bold;
+    border-radius: 0.8rem;
+
+    > div:first-child {
+      border-right: 0.1rem solid $border-divide-bold;
+      border-radius: 0.8rem 0 0 0.8rem;
+    }
+
+    .status-value {
+      @include flexbox(end, end);
+
+      width: 100%;
+    }
+  }
+
+  .progress-overview-guide {
+    @include text-style(13, $text-tertiary);
+  }
+
+  .project-status-table {
+    .table-wrapper {
+      height: 13.8rem;
+    }
+
+    th {
+      &.col-task {
+        width: 34%;
+      }
+
+      &.col-status {
+        width: 22%;
+      }
+
+      &.col-plan {
+        width: 22%;
+      }
+
+      &.col-actual {
+        width: 22%;
+      }
+    }
+  }
+}
+
+// ------------ 2. 업무 진척 현황 ------------
+.dashboard-card.task-progress {
+  height: 100%;
+  padding: 0 1.2rem 1.2rem;
+
+  .chart-row {
+    @include flexbox(start, start, 1.6rem);
+  }
+
+  // 1. 전체 업무 분포
+  .chart-overall-section {
+    @include scrollbar-base;
+
+    overflow: auto;
+    flex-grow: 1;
+    width: 100%;
+    height: 26.4rem;
+  }
+
+  .chart-overall-container {
+    width: 100%;
+    min-width: 70rem;
+    height: 100%;
+
+    .task-chart-header {
+      @include flexbox(start, end);
+
+      position: sticky;
+      z-index: $after-content-level;
+      top: 0;
+
+      width: 100%;
+      border-bottom: 0.1rem solid $border-divide-bolder;
+
+      background-color: $bg-primary;
+
+      .category-title {
+        @include text-style(14, $text-primary, 500);
+
+        width: 14.6rem;
+        padding: 0.8rem;
+      }
+
+      .category-count {
+        margin-left: 0.4rem;
+        color: $text-info;
+      }
+    }
+
+    .task-chart-guides {
+      flex-grow: 1;
+      height: 100%;
+      padding: 0 0.8rem 0.8rem 0;
+    }
+
+    .progress-guides {
+      @include flexbox;
+
+      .grid-label {
+        @include text-style(12, $text-tertiary);
+
+        width: calc(100% / 5);
+        text-align: end;
+
+        &-base {
+          opacity: 0;
+        }
+      }
+    }
+
+    .task-chart-list {
+      height: calc(100% - 3.6rem);
+    }
+
+    .task-row {
+      @include flexbox(start, center);
+
+      height: calc(100% / 6);
+      border-bottom: 0.1rem solid $border-divide-bold;
+    }
+
+    .task-name {
+      @include inline-flexbox(start, center);
+      @include text-style(14, $text-secondary, 500);
+
+      cursor: pointer;
+
+      flex-shrink: 0;
+
+      width: 14.6rem;
+      height: 100%;
+      padding: 0 0.8rem;
+
+      &.is-active {
+        color: $text-interactive-selected;
+      }
+    }
+
+    .bar-group {
+      @include flexbox(start, center);
+
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(to right, #e0e0e0, #e0e0e0 1px, transparent 1px, transparent 20%);
+    }
+
+    .task-progress-bar {
+      @include flexbox(start, center, 0.2rem);
+    }
+
+    .bar-item {
+      height: 2rem;
+      border-radius: 0.2rem;
+
+      &.completed {
+        width: 38rem;
+        background-color: $system-completed;
+      }
+
+      &.in-progress {
+        width: 13rem;
+        background-color: $system-progress;
+      }
+
+      &.delayed {
+        width: 1.2rem;
+        background-color: $system-delay;
+      }
+    }
+  }
+
+  // 2. 특정 업무 상세
+  .chart-container {
+    flex-shrink: 0;
+    width: 42.4rem;
+    height: 100%;
+  }
+
+  .label-list {
+    gap: 5rem;
+  }
+}
+
+// ------------ 3-1. 위험/이슈 ------------
+.dashboard-card.risk-status {
+  .chart-grid {
+    gap: 0.6rem;
+  }
+
+  .grid-label {
+    width: 1.5rem;
+  }
+
+  .chart-bars {
+    gap: 4.8rem;
+  }
+
+  .label-list {
+    gap: 4.6rem;
+  }
+}
+
+// ------------ 3-2. 소통 진행 현황 ------------
+.dashboard-card.communication-status {
+  .chart-grid {
+    gap: 0.6rem;
+  }
+
+  .grid-label {
+    width: 1.5rem;
+  }
+
+  .chart-bars {
+    gap: 3.6rem;
+  }
+
+  .label-list {
+    gap: 4.6rem;
+  }
+
+  .bar-item-status.in-progress {
+    height: 3.4rem;
+  }
+
+  .bar-item-status.delayed {
+    height: 1rem;
+  }
+
+  .bar-item-status.completed {
+    height: 4.5rem;
+  }
+}
+
+// ------------ 공지사항 / 자유게시판 ------------
+.dashboard-card.notice,
+.dashboard-card.free-board {
+  @include column-flexbox(start, start);
+
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+
+  .dashboard-header {
+    padding: 0.6rem 0.6rem 0.6rem 1.2rem;
+  }
+}
+
+.board-list {
+  @include column-flexbox(start, start, 0.4rem);
+
+  height: 100%;
+}
+
+.board-item {
+  width: 100%;
+  height: 12.5%;
+  padding: 0 1.2rem;
+  border-bottom: 0.1rem solid $border-divide;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.is-pinned {
+    .material-symbols-rounded,
+    span {
+      color: $text-interactive-selected;
+    }
+  }
+}
+
+.board-link {
+  @include flexbox(start, center, 0.8rem);
+
+  width: 100%;
+  height: 100%;
+
+  .material-symbols-rounded {
+    font-size: 1.6rem;
+  }
+
+  .board-text {
+    @include text-style(14);
+    @include truncate;
+  }
+}

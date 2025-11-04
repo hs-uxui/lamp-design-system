@@ -1,0 +1,75 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+.components-container {
+  width: 166rem;
+  margin: 0 auto;
+  padding: 2rem;
+
+  .h1 {
+    @include text-style(24, $text-primary, 500);
+
+    margin-bottom: 2rem;
+  }
+
+  .h2 {
+    @include text-style(20, $text-primary, 500);
+
+    margin: 2rem 0 1rem;
+  }
+
+  .h3 {
+    @include text-style(18, $text-primary, 500);
+
+    margin: 2rem 0 1rem;
+  }
+
+  .h4 {
+    @include text-style(16, $text-primary, 500);
+
+    margin: 1rem 0;
+  }
+
+  hr {
+    margin: 2rem 0;
+  }
+
+  .disacription {
+    @include text-style(16, $text-secondary, 500);
+  }
+
+  .properties-title {
+    @include text-style(14, $text-secondary, 500);
+
+    display: block;
+    margin-bottom: 0.8rem;
+  }
+
+  .wrapper {
+    @include column-flexbox(start, start, 1.2rem);
+  }
+
+  .group-wrapper {
+    @include column-flexbox(start, start, 3rem);
+  }
+
+  .row {
+    @include flexbox(start, start, 1.2rem);
+
+    margin-bottom: 2rem;
+
+    & > div {
+      width: 25%;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+  }
+
+  .row-between {
+    @include flexbox(between);
+  }
+}
