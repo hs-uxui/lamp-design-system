@@ -1,0 +1,143 @@
+@use './colors' as *;
+
+/* ------------ Text ------------ */
+
+/* 1)Hierarchy */
+$text-primary: $color-gray-900;
+$text-secondary: $color-gray-700;
+$text-tertiary: $color-gray-500;
+$text-disabled: $color-gray-400;
+
+/* 2)Status */
+$text-info: $color-blue-600;
+$text-info-bold: $color-blue-700;
+$text-warning: $color-orange-600;
+$text-warning-bold: $color-orange-700;
+$text-success: $color-green-600;
+$text-success-bold: $color-green-700;
+$text-danger: $color-red-600;
+$text-danger-bold: $color-red-700;
+
+/* 3)Interactive */
+$text-interactive-primary: $color-brand-500;
+$text-interactive-primary-hovered: $color-brand-600;
+$text-interactive-primary-pressed: $color-brand-700;
+$text-interactive-secondary: $color-brand-secondary-600;
+$text-interactive-secondary-hovered: $color-brand-secondary-700;
+$text-interactive-secondary-pressed: $color-brand-secondary-800;
+$text-interactive-selected: $color-brand-600;
+$text-interactive-visited: $color-indigo-600;
+$text-interactive-inverse: $color-base-white;
+
+/* ------------ Background ------------ */
+
+/* 1)Hierarchy */
+$bg-lamp7: $color-brand-500;
+$bg-primary: $color-base-white;
+$bg-secondary: $color-gray-50;
+$bg-tertiary: $color-gray-100;
+$bg-disabled: $color-gray-200;
+$bg-surface-muted: $color-light-gray-50;
+
+/* 2)Status */
+$bg-info-bold: $color-blue-700;
+$bg-info-subtle: $color-blue-50;
+$bg-info-subtle-pressed: $color-blue-100;
+$bg-warning-bold: $color-orange-500;
+$bg-warning-subtle: $color-orange-50;
+$bg-warning-subtle-pressed: $color-orange-100;
+$bg-success-bold: $color-green-700;
+$bg-success-subtle: $color-green-50;
+$bg-success-subtle-pressed: $color-green-100;
+$bg-danger-bold: $color-red-700;
+$bg-danger-subtle: $color-red-50;
+$bg-danger-subtle-pressed: $color-red-100;
+$bg-inverse-bold: $color-gray-700;
+$bg-inverse-bolder: $color-gray-800;
+
+/* 3)Interactive */
+$bg-interactive-primary: $color-brand-500;
+$bg-interactive-primary-hovered: $color-brand-600;
+$bg-interactive-primary-pressed: $color-brand-700;
+$bg-interactive-secondary: $color-brand-secondary-100;
+$bg-interactive-secondary-hovered: $color-brand-secondary-200;
+$bg-interactive-secondary-pressed: $color-brand-secondary-300;
+$bg-interactive-selected: $color-brand-50;
+$bg-interactive-selected-hover: $color-brand-100;
+$bg-interactive-selected-pressed: $color-brand-200;
+$bg-interactive-danger: $color-red-50;
+$bg-interactive-danger-hovered: $color-red-100;
+$bg-interactive-danger-pressed: $color-red-200;
+
+/* ------------ Icon ------------ */
+
+/* 1)Hierarchy */
+$icon-primary: $color-gray-900;
+$icon-secondary: $color-gray-700;
+$icon-tertiary: $color-gray-500;
+$icon-disabled: $color-gray-400;
+
+/* 2)Status */
+$icon-info: $color-blue-600;
+$icon-warning: $color-orange-600;
+$icon-success: $color-green-600;
+$icon-danger: $color-red-600;
+
+/* 3)Interactive */
+$icon-interactive-primary: $color-brand-500;
+$icon-interactive-primary-hovered: $color-brand-600;
+$icon-interactive-primary-pressed: $color-brand-700;
+$icon-interactive-secondary: $color-brand-secondary-600;
+$icon-interactive-secondary-hovered: $color-brand-secondary-700;
+$icon-interactive-secondary-pressed: $color-brand-secondary-800;
+$icon-interactive-selected: $color-brand-600;
+$icon-interactive-visited: $color-indigo-600;
+$icon-interactive-inverse: $color-base-white;
+
+/* ------------ Border ------------ */
+
+/* 1)Hierarchy */
+$border-lamp7: $color-brand-500;
+$border-primary: $color-gray-400;
+$border-secondary: $color-gray-200;
+$border-tertiary: $color-gray-300;
+$border-disabled: $color-gray-200;
+
+/* 2)Status */
+$border-focus: $color-brand-100;
+$border-info: $color-blue-300;
+$border-info-subtle: $color-blue-50;
+$border-warning: $color-orange-300;
+$border-warning-subtle: $color-orange-50;
+$border-success: $color-green-300;
+$border-success-subtle: $color-green-50;
+$border-danger: $color-red-300;
+$border-danger-subtle: $color-red-50;
+$border-divide: $color-gray-100;
+$border-divide-bold: $color-gray-200;
+$border-divide-bolder: $color-gray-300;
+
+/* 3)Interactive */
+$border-interactive-primary: $color-brand-200;
+$border-interactive-primary-hovered: $color-brand-300;
+$border-interactive-primary-pressed: $color-brand-400;
+$border-interactive-secondary: $color-brand-secondary-200;
+$border-interactive-secondary-hovered: $color-brand-secondary-300;
+$border-interactive-secondary-pressed: $color-brand-secondary-400;
+$border-interactive-danger: $color-red-200;
+$border-interactive-danger-hovered: $color-red-300;
+$border-interactive-danger-pressed: $color-red-400;
+
+/* ------------ System ------------ */
+$system-progress: #4bb49b;
+$system-success: $color-green-500;
+$system-warning: $color-orange-400;
+$system-delay: $color-red-400;
+$system-completed: #e7eaef;
+$system-total: $color-gray-600;
+$system-pending: $color-gray-400;
+
+/* _tokens.component.scss (추후 컴포넌트 추가용) */
+$table-head: $color-light-gray-100;
+$scroll-track: $color-light-gray-100;
+$scroll-thumb: $color-gray-400;
